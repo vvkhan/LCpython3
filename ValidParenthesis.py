@@ -10,12 +10,16 @@
 def isValid(s):
     d = {"(": ")", "{": "}", "[": "]"}
     flag = True
-    if 1 <= len(s) <= 104:
-        for i in range(len(s)):
+    if len(s) % 2 == 1:
+        flag = False
+    elif 1 <= len(s) <= 104:
+        for i in range(len(s)-1):
             if s[i] in d.keys():
                 flag = False
                 if s[i+1] == d[s[i]]:
                     flag = True
+    else:
+        flag = False
     return flag
 
 
@@ -25,3 +29,9 @@ r2 = isValid("()[]{}")
 print(r2)
 r3 = isValid("(]")
 print(r3)
+r4 = isValid("[")
+print(r4)
+r5 = isValid("((")
+print(r5)
+r6 = isValid("){")
+print(r6)
