@@ -9,17 +9,18 @@
 
 def isValid(s):
     d = {"(": ")", "{": "}", "[": "]"}
+    stack = []
     flag = True
-    if len(s) % 2 == 1:
+    if len(s) % 2 == 1 or s[0] in d.values() or s[len(s)-1] in d.keys() or 1 > len(s) > 104:
         flag = False
-    elif 1 <= len(s) <= 104:
-        for i in range(len(s)-1):
-            if s[i] in d.keys():
-                flag = False
-                if s[i+1] == d[s[i]]:
-                    flag = True
     else:
-        flag = False
+        for i in s:
+            if i in d.keys():
+                stack.append(d[i])
+            if i in d.values():
+                if i != stack.pop():
+                    flag = False
+                    return flag
     return flag
 
 
@@ -35,3 +36,5 @@ r5 = isValid("((")
 print(r5)
 r6 = isValid("){")
 print(r6)
+r7 = isValid("({{{{}}}))")
+print(r7)
