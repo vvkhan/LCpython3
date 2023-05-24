@@ -17,7 +17,10 @@ def isValid(s):
             if i in d.keys():
                 stack.append(d[i])
             if i in d.values():
-                if len(stack) != 0 and i != stack.pop():
+                if len(stack) != 0:
+                    if i != stack.pop():
+                        return False
+                else:
                     return False
 
     if len(stack) == 0:
@@ -43,3 +46,5 @@ r8 = isValid("[[[]")
 print(r8)
 r9 = isValid("()))")
 print(r9)
+r10 = isValid("[(){}]")
+print(r10)
